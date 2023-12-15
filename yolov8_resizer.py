@@ -25,7 +25,7 @@ from tqdm import tqdm
 
 def image_norm(img):
     old_size = img.shape[0:2]
-    target_size = 640
+    target_size = max(old_size[0],old_size[1])
     pad_w = target_size - old_size[1]
     pad_h = target_size - old_size[0]
     top, bottom = pad_h // 2, pad_h - (pad_h // 2)
@@ -34,7 +34,7 @@ def image_norm(img):
     return img_new
 def main():
     parser = argparse.ArgumentParser(description="yolov8 image resize to (640,640),keep ratio")
-    parser.add_argument("--proj",default="num",help="project dir name")
+    parser.add_argument("--proj",default="grains",help="project dir name")
     args = parser.parse_args()
     print(args)
     PROJ = args.proj
@@ -45,7 +45,7 @@ def main():
             continue
         img = cv2.imdecode(np.fromfile(f"{imgs}/{file}",dtype=np.uint8),cv2.IMREAD_COLOR)
         norm = image_norm(img)
-        cv2.resize(norm,(640,640))
+        norm = cv2.resize(norm,(640,640))
         cv2.imwrite(f"{PROJ}/images/{file}",norm)
     print("done.")
 if __name__ == "__main__":

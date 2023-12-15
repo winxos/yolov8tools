@@ -51,7 +51,7 @@ def main():
     parser = argparse.ArgumentParser(description="yolov8 converter")
     parser.add_argument("--proj",default="hand",help="project dir name")
     parser.add_argument("--proportion",default=0.8,type=float,help="train data proportion,default 0.8, [0.0 - 1.0]")
-    parser.add_argument("--shuffle",default=1,type=int,help="random split the dataset,default 1, [0|1]")
+    parser.add_argument("--shuffle",default=0,type=int,help="random split the dataset,default 0, [0|1]")
     args = parser.parse_args()
     print(args)
     PROJ = args.proj
