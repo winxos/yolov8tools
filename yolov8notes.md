@@ -17,6 +17,7 @@ yolo detect predict model=best.pt conf=0.25 source=2.jpg
 yolo detect predict model=best.pt source=0 show=True
 #track
 yolo track model=best.pt source=0 show=True save=True
+yolo classify train data=d:\GrainLibs\yolo-rice-raw model=yolov8n-cls.pt batch=512 translate=0 scale=0
 ```
 ### labeling
 https://app.roboflow.com/ 在线标签工具，支持yolov8格式导出
